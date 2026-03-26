@@ -1,0 +1,307 @@
+@dc:description "Descrição de alguns elementos de CT&I em Pernambuco"
+description <http://gic.ufrpe.br/cti/description/cti-pe#> as cti-pe {
+
+	uses <http://purl.org/dc/elements/1.1/> as dc
+
+	// Vocabulário principal de CT&I
+	uses <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti
+
+	// ---------------------------------------------------------------------
+	// Instituições de Ciência e Tecnologia (ICT)
+	// ---------------------------------------------------------------------
+
+	instance ict-ufrpe : cti:ICT [
+		cti:cd_entidade_capes "23004"
+		cti:sg_entidade_ensino "UFRPE"
+		cti:nm_entidade_ensino "Universidade Federal Rural de Pernambuco"
+		cti:sg_uf "PE"
+	]
+
+	instance ict-ufpe : cti:ICT [
+		cti:cd_entidade_capes "25002"
+		cti:sg_entidade_ensino "UFPE"
+		cti:nm_entidade_ensino "Universidade Federal de Pernambuco"
+		cti:sg_uf "PE"
+	]
+
+	// ---------------------------------------------------------------------
+	// Programas de Pós-Graduação (PPG) e conceitos CAPES
+	// ---------------------------------------------------------------------
+
+	instance ppg-cti-ufrpe : cti:PPG [
+		cti:cd_programa_ies "23004012001P5"
+		cti:nm_programa_ies "PPG em Ciência, Tecnologia e Inovação"
+		cti:nm_modalidade_programa "Acadêmico"
+		cti:nm_area_conhecimento "Interdisciplinar"
+		cti:sediado ict-ufrpe
+		cti:avaliado conceito-ppg-cti-ufrpe-2021
+	]
+
+	instance conceito-ppg-cti-ufrpe-2021 : cti:Conceito_PPG [
+		cti:an_base_conceito 2021
+		cti:cd_conceito_programa "6"
+	]
+
+	instance conceito-ppg-engenharia-producao-ufpe-2021 : cti:Conceito_PPG [
+		cti:an_base_conceito 2021
+		cti:cd_conceito_programa "5"
+	]
+
+	instance ppg-engenharia-producao-ufpe : cti:PPG [
+		cti:cd_programa_ies "25002019001P3"
+		cti:nm_programa_ies "PPG em Engenharia de Produção"
+		cti:nm_modalidade_programa "Acadêmico"
+		cti:nm_area_conhecimento "Engenharias"
+		cti:sediado ict-ufpe
+		cti:avaliado conceito-ppg-engenharia-producao-ufpe-2021
+	]
+
+	// ---------------------------------------------------------------------
+	// Docentes
+	// ---------------------------------------------------------------------
+
+	// Docentes da UFRPE (PPG CTI)
+	instance docente-ana : cti:Docente [
+		cti:id_pessoa 1
+		cti:nr_documento "00000000000"
+		cti:nm_pessoa "Ana Silva"
+		cti:an_nascimento 1980
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Dedicação exclusiva"
+		cti:membro ppg-cti-ufrpe
+	]
+
+	instance docente-carlos : cti:Docente [
+		cti:id_pessoa 2
+		cti:nr_documento "11111111111"
+		cti:nm_pessoa "Carlos Pereira"
+		cti:an_nascimento 1975
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Tempo integral"
+		cti:membro ppg-cti-ufrpe
+	]
+
+	instance docente-joao : cti:Docente [
+		cti:id_pessoa 3
+		cti:nr_documento "22222222222"
+		cti:nm_pessoa "João Oliveira"
+		cti:an_nascimento 1982
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Tempo parcial"
+		cti:membro ppg-cti-ufrpe
+	]
+
+	// Docentes da UFPE (PPG Engenharia de Produção)
+	instance docente-maria : cti:Docente [
+		cti:id_pessoa 4
+		cti:nr_documento "33333333333"
+		cti:nm_pessoa "Maria Souza"
+		cti:an_nascimento 1978
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Dedicação exclusiva"
+		cti:membro ppg-engenharia-producao-ufpe
+	]
+
+	instance docente-ricardo : cti:Docente [
+		cti:id_pessoa 5
+		cti:nr_documento "44444444444"
+		cti:nm_pessoa "Ricardo Lima"
+		cti:an_nascimento 1973
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Tempo integral"
+		cti:membro ppg-engenharia-producao-ufpe
+	]
+
+	instance docente-luiza : cti:Docente [
+		cti:id_pessoa 6
+		cti:nr_documento "55555555555"
+		cti:nm_pessoa "Luiza Carvalho"
+		cti:an_nascimento 1985
+		cti:nm_pais_nacionalidade "Brasil"
+		cti:ds_regime_trabalho "Tempo parcial"
+		cti:membro ppg-engenharia-producao-ufpe
+	]
+
+	// ---------------------------------------------------------------------
+	// Discentes
+	// ---------------------------------------------------------------------
+
+	// Discentes da UFRPE (PPG CTI)
+	instance discente-bruno : cti:Discente [
+		cti:id_pessoa 7
+		cti:nm_pessoa "Bruno Souza"
+		cti:nm_situacao_discente "Matriculado"
+		cti:vinculado ppg-cti-ufrpe
+		cti:orientador docente-ana
+	]
+
+	instance discente-carla : cti:Discente [
+		cti:id_pessoa 8
+		cti:nm_pessoa "Carla Santos"
+		cti:nm_situacao_discente "Egresso"
+		cti:vinculado ppg-cti-ufrpe
+		cti:orientador docente-carlos
+	]
+
+	// Discentes da UFPE (PPG Engenharia de Produção)
+	instance discente-paulo : cti:Discente [
+		cti:id_pessoa 9
+		cti:nm_pessoa "Paulo Ferreira"
+		cti:nm_situacao_discente "Matriculado"
+		cti:vinculado ppg-engenharia-producao-ufpe
+		cti:orientador docente-maria
+	]
+
+	instance discente-larissa : cti:Discente [
+		cti:id_pessoa 10
+		cti:nm_pessoa "Larissa Freitas"
+		cti:nm_situacao_discente "Egresso"
+		cti:vinculado ppg-engenharia-producao-ufpe
+		cti:orientador docente-ricardo
+	]
+
+	// ---------------------------------------------------------------------
+	// Veículos de publicação
+	// ---------------------------------------------------------------------
+
+	instance periodico-cti : cti:Veiculo_Publicacao [
+		cti:nm_veiculo_publicacao "Revista Brasileira de CT&I"
+		cti:ds_isbn_issn "1234-5678"
+	]
+
+	instance periodico-inovacao : cti:Veiculo_Publicacao [
+		cti:nm_veiculo_publicacao "Journal of Innovation and Technology"
+		cti:ds_isbn_issn "8765-4321"
+	]
+
+	// ---------------------------------------------------------------------
+	// Produções científicas (3-5 itens por PPG)
+	// ---------------------------------------------------------------------
+
+	// Produções do PPG CTI (UFRPE)
+	instance artigo-cti-1 : cti:Producao_Cientifica [
+		cti:an_base_producao 2022
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Indicadores de CT&I em Pernambuco: uma análise exploratória"
+		cti:ds_doi "10.1234/cti.2022.0001"
+		cti:publicada periodico-cti
+	]
+
+	instance artigo-cti-2 : cti:Producao_Cientifica [
+		cti:an_base_producao 2023
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Redes de colaboração científica no Nordeste brasileiro"
+		cti:ds_doi "10.1234/cti.2023.0002"
+		cti:publicada periodico-cti
+	]
+
+	instance artigo-cti-3 : cti:Producao_Cientifica [
+		cti:an_base_producao 2024
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Inovação aberta e universidades públicas: o caso de Pernambuco"
+		cti:ds_doi "10.1234/cti.2024.0003"
+		cti:publicada periodico-inovacao
+	]
+
+	instance artigo-cti-4 : cti:Producao_Cientifica [
+		cti:an_base_producao 2024
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Formação de recursos humanos em CT&I na Região Nordeste"
+		cti:ds_doi "10.1234/cti.2024.0004"
+		cti:publicada periodico-inovacao
+	]
+
+	// Produções do PPG Engenharia de Produção (UFPE)
+	instance artigo-ep-1 : cti:Producao_Cientifica [
+		cti:an_base_producao 2021
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Eficiência de processos produtivos na indústria pernambucana"
+		cti:ds_doi "10.5678/ep.2021.0001"
+		cti:publicada periodico-cti
+	]
+
+	instance artigo-ep-2 : cti:Producao_Cientifica [
+		cti:an_base_producao 2022
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Aplicações de indústria 4.0 em cadeias produtivas locais"
+		cti:ds_doi "10.5678/ep.2022.0002"
+		cti:publicada periodico-cti
+	]
+
+	instance artigo-ep-3 : cti:Producao_Cientifica [
+		cti:an_base_producao 2023
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Modelagem de sistemas de produção sustentáveis em Pernambuco"
+		cti:ds_doi "10.5678/ep.2023.0003"
+		cti:publicada periodico-inovacao
+	]
+
+	instance artigo-ep-4 : cti:Producao_Cientifica [
+		cti:an_base_producao 2024
+		cti:ds_natureza "Artigo em periódico"
+		cti:nm_titulo "Análise de capacidade inovativa em parques tecnológicos"
+		cti:ds_doi "10.5678/ep.2024.0004"
+		cti:publicada periodico-inovacao
+	]
+
+	// Relações de autoria representadas como propriedades nos autores
+	instance autor-ana : cti:Autor [
+		cti:id_pessoa 11
+		cti:nm_pessoa "Ana Silva"
+		cti:ds_orc_id "0000-0001-0000-000A"
+		cti:autoria artigo-cti-1
+		cti:autoria artigo-cti-2
+		cti:mensurado citacao-ana-2024
+	]
+
+	instance autor-carlos : cti:Autor [
+		cti:id_pessoa 12
+		cti:nm_pessoa "Carlos Pereira"
+		cti:ds_orc_id "0000-0001-0000-000C"
+		cti:autoria artigo-cti-1
+		cti:autoria artigo-cti-3
+	]
+
+	instance autor-joao : cti:Autor [
+		cti:id_pessoa 13
+		cti:nm_pessoa "João Oliveira"
+		cti:autoria artigo-cti-2
+		cti:autoria artigo-cti-4
+	]
+
+	instance autor-maria : cti:Autor [
+		cti:id_pessoa 14
+		cti:nm_pessoa "Maria Souza"
+		cti:autoria artigo-ep-1
+		cti:autoria artigo-ep-2
+		cti:mensurado citacao-maria-2024
+	]
+
+	instance autor-ricardo : cti:Autor [
+		cti:id_pessoa 15
+		cti:nm_pessoa "Ricardo Lima"
+		cti:autoria artigo-ep-1
+		cti:autoria artigo-ep-4
+	]
+
+	instance autor-luiza : cti:Autor [
+		cti:id_pessoa 16
+		cti:nm_pessoa "Luiza Carvalho"
+		cti:autoria artigo-ep-3
+	]
+
+	// ---------------------------------------------------------------------
+	// Medidas de citação
+	// ---------------------------------------------------------------------
+
+	instance citacao-ana-2024 : cti:Citacao [
+		cti:an_base_citacao 2024
+		cti:nr_citacoes_autor 25
+	]
+
+	instance citacao-maria-2024 : cti:Citacao [
+		cti:an_base_citacao 2024
+		cti:nr_citacoes_autor 40
+	]
+
+}
