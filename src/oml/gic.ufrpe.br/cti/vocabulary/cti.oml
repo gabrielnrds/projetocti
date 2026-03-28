@@ -6,42 +6,14 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	concept ICT
 
-	concept Conceito_PPG
-
-	relation sediado [
+	relation sediado_em [
 		from PPG
 		to ICT
 	]
 
-	relation avaliado [
-		from PPG
-		to Conceito_PPG
-	]
-
-	concept Discente < Pessoa
-
-	concept Docente < Pessoa
-
-	relation vinculado [
-		from Discente
-		to PPG
-	]
-
 	relation membro [
-		from Docente
+		from Autor
 		to PPG
-	]
-
-	aspect Pessoa
-
-	scalar property an_base_conceito [
-		domain Conceito_PPG
-		range xsd:integer
-	]
-
-	scalar property cd_conceito_programa [
-		domain Conceito_PPG
-		range xsd:string
 	]
 
 	scalar property cd_entidade_capes [
@@ -79,87 +51,7 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:string
 	]
 
-	scalar property nm_area_conhecimento [
-		domain PPG
-		range xsd:string
-	]
-
-	scalar property id_pessoa [
-		domain Pessoa
-		range xsd:integer
-	]
-
-	scalar property nr_documento [
-		domain Pessoa
-		range xsd:string
-	]
-
-	scalar property nm_pessoa [
-		domain Pessoa
-		range xsd:string
-	]
-
-	scalar property an_nascimento [
-		domain Pessoa
-		range xsd:integer
-	]
-
-	scalar property nm_pais_nacionalidade [
-		domain Pessoa
-		range xsd:string
-	]
-
-	scalar property ds_url_cv_lattes [
-		domain Pessoa
-		range xsd:string
-	]
-
-	scalar property ds_grau_academico_discente [
-		domain Discente
-		range xsd:string
-	]
-
-	scalar property nm_situacao_discente [
-		domain Discente
-		range xsd:string
-	]
-
-	scalar property qt_mes_titulacao [
-		domain Discente
-		range xsd:int
-	]
-
-	scalar property ds_categoria_docente [
-		domain Docente
-		range xsd:int
-	]
-
-	scalar property ds_tipo_vinculo_docente_ies [
-		domain Docente
-		range xsd:string
-	]
-
-	scalar property ds_regime_trabalho [
-		domain Docente
-		range xsd:string
-	]
-
-	scalar property cd_cat_bolsa_produtividade [
-		domain Docente
-		range xsd:string
-	]
-
-	scalar property an_titulacao [
-		domain Docente
-		range xsd:int
-	]
-
-	scalar property nm_grau_titulacao [
-		domain Docente
-		range xsd:string
-	]
-
-	concept Autor < Pessoa
+	concept Autor
 
 	scalar property ds_orc_id [
 		domain Autor
@@ -210,7 +102,7 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	scalar property nr_citacoes_publicacao [
 		domain Producao_Cientifica
-		range xsd:string
+		range xsd:int
 	]
 
 	relation autoria [
@@ -234,13 +126,13 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		domain Veiculo_Publicacao
 		range xsd:int
 	]
-	
+
 	scalar property nr_quartil_scopus [
 		domain Veiculo_Publicacao
 		range xsd:int
 	]
 
-	relation publicada [
+	relation publicada_em [
 		from Producao_Cientifica
 		to Veiculo_Publicacao
 	]
@@ -267,13 +159,25 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:integer
 	]
 
-	relation mensurado [
-		from Autor
+	relation mensurado_por [
+		from Producao_Cientifica
 		to Citacao
 	]
 
-	relation orientador [
-		from Discente
-		to Docente
+	concept Area_Conhecimento
+
+	scalar property nm_area_conhecimento [
+		domain Area_Conhecimento
+		range xsd:string
+	]
+
+	scalar property fator_impacto_medio [
+		domain Area_Conhecimento
+		range xsd:double
+	]
+
+	relation pertence [
+		from PPG
+		to Area_Conhecimento
 	]
 }
