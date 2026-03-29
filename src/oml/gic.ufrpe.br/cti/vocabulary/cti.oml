@@ -46,11 +46,6 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:string
 	]
 
-	scalar property nm_modalidade_programa [
-		domain PPG
-		range xsd:string
-	]
-
 	concept Autor
 
 	scalar property ds_orc_id [
@@ -70,32 +65,12 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	concept Producao_Cientifica
 
-	scalar property an_base_producao [
+	scalar property an_base [
 		domain Producao_Cientifica
 		range xsd:integer
 	]
 
-	scalar property ds_natureza [
-		domain Producao_Cientifica
-		range xsd:string
-	]
-
-	scalar property nm_titulo [
-		domain Producao_Cientifica
-		range xsd:string
-	]
-
-	scalar property ds_url_acesso [
-		domain Producao_Cientifica
-		range xsd:string
-	]
-
-	scalar property ds_palavras_chave [
-		domain Producao_Cientifica
-		range xsd:string
-	]
-
-	scalar property ds_doi [
+	scalar property nm_producao [
 		domain Producao_Cientifica
 		range xsd:string
 	]
@@ -113,11 +88,6 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 	concept Veiculo_Publicacao
 
 	scalar property nm_veiculo_publicacao [
-		domain Veiculo_Publicacao
-		range xsd:string
-	]
-
-	scalar property ds_isbn_issn [
 		domain Veiculo_Publicacao
 		range xsd:string
 	]
@@ -159,9 +129,9 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:integer
 	]
 
-	relation mensurado_por [
+	relation vinculada [
 		from Producao_Cientifica
-		to Citacao
+		to PPG
 	]
 
 	concept Area_Conhecimento
@@ -179,5 +149,25 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 	relation pertence [
 		from PPG
 		to Area_Conhecimento
+	]
+
+	scalar property cd_identificador_veiculo [
+		domain Veiculo_Publicacao
+		range xsd:string
+	]
+
+	scalar property ds_dependencia_administrativa [
+		domain ICT
+		range xsd:string
+	]
+
+	scalar property sg_uf_programa [
+		domain PPG
+		range xsd:string
+	]
+
+	relation mensurada_por [
+		from Producao_Cientifica
+		to Citacao
 	]
 }

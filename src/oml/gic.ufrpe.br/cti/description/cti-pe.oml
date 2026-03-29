@@ -29,14 +29,12 @@ description <http://gic.ufrpe.br/cti/description/cti-pe#> as cti-pe {
 	instance ppg-cti-ufrpe : cti:PPG [
 		cti:cd_programa_ies "23004012001P5"
 		cti:nm_programa_ies "PPG em Ciência, Tecnologia e Inovação"
-		cti:nm_modalidade_programa "Acadêmico"
 		cti:sediado_em ict-ufrpe
 	]
 
 	instance ppg-engenharia-producao-ufpe : cti:PPG [
 		cti:cd_programa_ies "25002019001P3"
 		cti:nm_programa_ies "PPG em Engenharia de Produção"
-		cti:nm_modalidade_programa "Acadêmico"
 		cti:sediado_em ict-ufpe
 	]
 
@@ -45,12 +43,10 @@ description <http://gic.ufrpe.br/cti/description/cti-pe#> as cti-pe {
 	// ---------------------------------------------------------------------
 	instance periodico-cti : cti:Veiculo_Publicacao [
 		cti:nm_veiculo_publicacao "Revista Brasileira de CT&I"
-		cti:ds_isbn_issn "1234-5678"
 	]
 
 	instance periodico-inovacao : cti:Veiculo_Publicacao [
 		cti:nm_veiculo_publicacao "Journal of Innovation and Technology"
-		cti:ds_isbn_issn "8765-4321"
 	]
 
 	// ---------------------------------------------------------------------
@@ -58,67 +54,51 @@ description <http://gic.ufrpe.br/cti/description/cti-pe#> as cti-pe {
 	// ---------------------------------------------------------------------
 	// Produções do PPG CTI (UFRPE)
 	instance artigo-cti-1 : cti:Producao_Cientifica [
-		cti:an_base_producao 2022
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Indicadores de CT&I em Pernambuco: uma análise exploratória"
-		cti:ds_doi "10.1234/cti.2022.0001"
+		cti:an_base 2022
+		cti:nm_producao "Indicadores de CT&I em Pernambuco: uma análise exploratória"
 		cti:publicada_em periodico-cti
 	]
 
 	instance artigo-cti-2 : cti:Producao_Cientifica [
-		cti:an_base_producao 2023
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Redes de colaboração científica no Nordeste brasileiro"
-		cti:ds_doi "10.1234/cti.2023.0002"
+		cti:an_base 2023
+		cti:nm_producao "Redes de colaboração científica no Nordeste brasileiro"
 		cti:publicada_em periodico-cti
 	]
 
 	instance artigo-cti-3 : cti:Producao_Cientifica [
-		cti:an_base_producao 2024
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Inovação aberta e universidades públicas: o caso de Pernambuco"
-		cti:ds_doi "10.1234/cti.2024.0003"
+		cti:an_base 2024
+		cti:nm_producao "Inovação aberta e universidades públicas: o caso de Pernambuco"
 		cti:publicada_em periodico-inovacao
 	]
 
 	instance artigo-cti-4 : cti:Producao_Cientifica [
-		cti:an_base_producao 2024
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Formação de recursos humanos em CT&I na Região Nordeste"
-		cti:ds_doi "10.1234/cti.2024.0004"
+		cti:an_base 2024
+		cti:nm_producao "Formação de recursos humanos em CT&I na Região Nordeste"
 		cti:publicada_em periodico-inovacao
 	]
 
 	// Produções do PPG Engenharia de Produção (UFPE)
 	instance artigo-ep-1 : cti:Producao_Cientifica [
-		cti:an_base_producao 2021
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Eficiência de processos produtivos na indústria pernambucana"
-		cti:ds_doi "10.5678/ep.2021.0001"
+		cti:an_base 2021
+		cti:nm_producao "Eficiência de processos produtivos na indústria pernambucana"
 		cti:publicada_em periodico-cti
 	]
 
 	instance artigo-ep-2 : cti:Producao_Cientifica [
-		cti:an_base_producao 2022
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Aplicações de indústria 4.0 em cadeias produtivas locais"
-		cti:ds_doi "10.5678/ep.2022.0002"
+		cti:an_base 2022
+		cti:nm_producao "Aplicações de indústria 4.0 em cadeias produtivas locais"
 		cti:publicada_em periodico-cti
 	]
 
 	instance artigo-ep-3 : cti:Producao_Cientifica [
-		cti:an_base_producao 2023
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Modelagem de sistemas de produção sustentáveis em Pernambuco"
-		cti:ds_doi "10.5678/ep.2023.0003"
+		cti:an_base 2023
+		cti:nm_producao "Modelagem de sistemas de produção sustentáveis em Pernambuco"
 		cti:publicada_em periodico-inovacao
 	]
 
 	instance artigo-ep-4 : cti:Producao_Cientifica [
-		cti:an_base_producao 2024
-		cti:ds_natureza "Artigo em periódico"
-		cti:nm_titulo "Análise de capacidade inovativa em parques tecnológicos"
-		cti:ds_doi "10.5678/ep.2024.0004"
+		cti:an_base 2024
+		cti:nm_producao "Análise de capacidade inovativa em parques tecnológicos"
 		cti:publicada_em periodico-inovacao
 	]
 
