@@ -2,15 +2,55 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	extends <http://www.w3.org/2001/XMLSchema#> as xsd
 
-	concept PPG
-
+	// =========================================================
+	// Conceitos principais da ontologia de CT&I em Pernambuco
+	// =========================================================
 	concept ICT
+	concept PPG
+	concept Area_Conhecimento
+	concept Producao_Cientifica
+	concept Veiculo_Publicacao
 
+	// Conceitos mantidos para compatibilidade com descrições antigas
+	concept Autor
+	concept Citacao
+
+	// =========================================================
+	// Relações entre conceitos
+	// =========================================================
 	relation sediado_em [
 		from PPG
 		to ICT
 	]
 
+	relation pertence [
+		from PPG
+		to Area_Conhecimento
+	]
+
+	relation vinculada [
+		from Producao_Cientifica
+		to PPG
+	]
+
+	relation area_da_producao [
+		from Producao_Cientifica
+		to Area_Conhecimento
+	]
+
+	relation publicada_em [
+		from Producao_Cientifica
+		to Veiculo_Publicacao
+	]
+
+	relation autoria [
+		from Autor
+		to Producao_Cientifica
+	]
+
+	// =========================================================
+	// Propriedades de ICT
+	// =========================================================
 	scalar property cd_entidade_capes [
 		domain ICT
 		range xsd:string
@@ -31,13 +71,35 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:string
 	]
 
+	scalar property ds_dependencia_administrativa [
+		domain ICT
+		range xsd:string
+	]
+
+	// =========================================================
+	// Propriedades de PPG
+	// =========================================================
+	scalar property cd_programa_ies [
+		domain PPG
+		range xsd:string
+	]
+
 	scalar property nm_programa_ies [
 		domain PPG
 		range xsd:string
 	]
 
-	concept Producao_Cientifica
+	// =========================================================
+	// Propriedades de Área de Conhecimento
+	// =========================================================
+	scalar property nm_area_conhecimento [
+		domain Area_Conhecimento
+		range xsd:string
+	]
 
+	// =========================================================
+	// Propriedades de Produção Científica
+	// =========================================================
 	scalar property an_base [
 		domain Producao_Cientifica
 		range xsd:integer
@@ -48,45 +110,65 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:string
 	]
 
-	relation vinculada [
-		from Producao_Cientifica
-		to PPG
-	]
-
-	concept Area_Conhecimento
-
-	scalar property nm_area_conhecimento [
-		domain Area_Conhecimento
-		range xsd:string
-	]
-
-	relation pertence [
-		from PPG
-		to Area_Conhecimento
-	]
-
-	scalar property ds_dependencia_administrativa [
-		domain ICT
-		range xsd:string
-	]
-
 	scalar property ds_doi [
 		domain Producao_Cientifica
 		range xsd:string
 	]
 
-	relation area_da_producao [
-		from Producao_Cientifica
-		to Area_Conhecimento
+	// =========================================================
+	// Propriedades de Veículo de Publicação
+	// CiteScore e Quartil pertencem ao veículo, não à produção.
+	// =========================================================
+	scalar property cd_identificador_veiculo [
+		domain Veiculo_Publicacao
+		range xsd:string
+	]
+
+	scalar property nm_veiculo_publicacao [
+		domain Veiculo_Publicacao
+		range xsd:string
 	]
 
 	scalar property nr_citescore [
-		domain Producao_Cientifica
+		domain Veiculo_Publicacao
 		range xsd:string
 	]
 
 	scalar property ds_quartil [
-		domain Producao_Cientifica
+		domain Veiculo_Publicacao
 		range xsd:string
+	]
+
+	// =========================================================
+	// Propriedades de Autor e Citação, mantidas para evolução futura
+	// =========================================================
+	scalar property nm_pessoa [
+		domain Autor
+		range xsd:string
+	]
+
+	scalar property ds_orc_id [
+		domain Autor
+		range xsd:string
+	]
+
+	scalar property an_base_citacao [
+		domain Citacao
+		range xsd:integer
+	]
+
+	scalar property nr_citacoes_autor [
+		domain Citacao
+		range xsd:integer
+	]
+
+	scalar property nr_indice_h [
+		domain Citacao
+		range xsd:integer
+	]
+
+	scalar property nr_indice_i10 [
+		domain Citacao
+		range xsd:integer
 	]
 }

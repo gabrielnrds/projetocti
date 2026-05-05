@@ -1,0 +1,27 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Consulta: Comparação entre ICTs públicas e privadas
+# Objetivo: comparar volume e qualidade média das produções por dependência administrativa.
+
+SELECT ?dependencia
+       (COUNT(DISTINCT ?producao) AS ?total_producoes)
+       (AVG(xsd:decimal(?citescore)) AS ?media_citescore)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:vinculada ?ppg ;
+            cti:publicada_em ?veiculo .
+
+  ?ppg cti:sediado_em ?ict .
+
+  ?ict cti:ds_dependencia_administrativa ?dependencia .
+
+  ?veiculo cti:nr_citescore ?citescore .
+
+  FILTER(?citescore != "0.0")
+  FILTER(?citescore != "")
+  FILTER(?citescore != "None")
+  FILTER(?citescore != "Não_Encontrado")
+}
+GROUP BY ?dependencia
+ORDER BY DESC(?media_citescore)

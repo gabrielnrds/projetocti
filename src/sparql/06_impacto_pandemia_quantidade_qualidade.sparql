@@ -1,0 +1,29 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Consulta: Impacto da pandemia na quantidade e qualidade da produção
+# Objetivo: comparar período pré-pandemia e pós/intra-pandemia.
+
+SELECT ?periodo
+       (COUNT(DISTINCT ?producao) AS ?total_producoes)
+       (AVG(xsd:decimal(?citescore)) AS ?media_citescore)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:an_base ?ano ;
+            cti:publicada_em ?veiculo .
+
+  ?veiculo cti:nr_citescore ?citescore .
+
+  BIND(
+    IF(?ano < 2020, "Pre-pandemia",
+      IF(?ano >= 2020 && ?ano <= 2021, "Pandemia", "Pos-pandemia")
+    ) AS ?periodo
+  )
+
+  FILTER(?citescore != "0.0")
+  FILTER(?citescore != "")
+  FILTER(?citescore != "None")
+  FILTER(?citescore != "Não_Encontrado")
+}
+GROUP BY ?periodo
+ORDER BY ?periodo

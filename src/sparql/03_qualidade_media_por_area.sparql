@@ -1,0 +1,25 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Consulta: Média de CiteScore por área de conhecimento
+# Objetivo: analisar qualidade média dos veículos de publicação por área.
+
+SELECT ?area (AVG(xsd:decimal(?citescore)) AS ?media_citescore)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:vinculada ?ppg ;
+            cti:publicada_em ?veiculo .
+
+  ?ppg cti:pertence ?areaConhecimento .
+  ?areaConhecimento cti:nm_area_conhecimento ?area .
+
+  ?veiculo a cti:Veiculo_Publicacao ;
+           cti:nr_citescore ?citescore .
+
+  FILTER(?citescore != "0.0")
+  FILTER(?citescore != "")
+  FILTER(?citescore != "None")
+  FILTER(?citescore != "Não_Encontrado")
+}
+GROUP BY ?area
+ORDER BY DESC(?media_citescore)

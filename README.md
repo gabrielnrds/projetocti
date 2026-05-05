@@ -77,3 +77,32 @@
     - nr_indice_h
     - nr_indice_i10
 
+# Sprint 3 — Extração do Conhecimento
+
+## Objetivo
+
+A Sprint 3 tem como objetivo transformar a ontologia e as instâncias OML em conhecimento consultável por meio de RDF, Fuseki e consultas SPARQL.
+
+O fluxo geral desta sprint é:
+
+```text
+OML → RDF/TTL → Fuseki → SPARQL → Resultados JSON
+
+projetocti/
+├── build.gradle
+├── src/
+│   ├── oml/
+│   │   └── gic.ufrpe.br/
+│   │       └── cti/
+│   │           ├── vocabulary/
+│   │           │   └── cti.oml
+│   │           └── description/
+│   │               └── cti-pe.oml
+│   └── sparql/
+│       ├── 01_evolucao_producao_por_ano.sparql
+│       ├── 02_producoes_por_ict_e_area.sparql
+│       ├── 03_qualidade_media_por_area.sparql
+│       ├── 04_publicacoes_por_quartil.sparql
+│       ├── 05_publica_vs_privada.sparql
+│       ├── 06_impacto_pandemia_quantidade_qualidade.sparql
+│       └── 07_top_veiculos_por_citescore.sparql
