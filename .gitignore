@@ -1,6 +1,13 @@
 # Saída de build do Gradle
-/build/
-/.gradle/
+.env
+data/
+output/
+build/
+.gradle/
+.gradle-user-home/
+.fuseki/
+*.hprof
+
 
 # Arquivos de log ou temporários genéricos
 *.log

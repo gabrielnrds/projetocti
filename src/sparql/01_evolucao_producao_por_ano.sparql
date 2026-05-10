@@ -3,7 +3,7 @@ PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
 # Consulta: Evolução da produção científica por ano
 # Objetivo: contar quantas produções científicas existem em cada ano.
 
-SELECT ?ano (COUNT(DISTINCT ?producao) AS ?total_producoes)
+SELECT ?ano (COUNT(?producao) AS ?total_producoes)
 WHERE {
   ?producao a cti:Producao_Cientifica ;
             cti:an_base ?ano .

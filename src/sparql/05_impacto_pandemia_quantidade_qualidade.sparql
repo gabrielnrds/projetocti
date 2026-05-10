@@ -1,0 +1,28 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+# Consulta: Impacto da pandemia na quantidade e qualidade da produção
+# Objetivo: gerar a curva anual de volume e qualidade, com período pré/pandemia/pós-pandemia.
+# Métrica principal de qualidade: CiteScore.
+
+SELECT ?ano ?periodo
+       (COUNT(?producao) AS ?total_producoes)
+       (COUNT(?citescore) AS ?producoes_com_citescore)
+       (IF(COUNT(?citescore) > 0, SUM(COALESCE(?citescore, 0)) / COUNT(?citescore), 0) AS ?media_citescore)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:an_base ?ano ;
+            cti:publicada_em ?veiculo .
+
+  FILTER(?ano >= 2016 && ?ano <= 2024)
+
+  BIND(
+    IF(?ano < 2020, "Pre-pandemia",
+      IF(?ano >= 2020 && ?ano <= 2021, "Pandemia", "Pos-pandemia")
+    ) AS ?periodo
+  )
+
+  OPTIONAL {
+    ?veiculo cti:nr_citescore ?citescore .
+  }
+}
+GROUP BY ?ano ?periodo
+ORDER BY ASC(?ano)

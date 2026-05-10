@@ -6,14 +6,14 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 	// Conceitos principais da ontologia de CT&I em Pernambuco
 	// =========================================================
 	concept ICT
-	concept PPG
-	concept Area_Conhecimento
-	concept Producao_Cientifica
-	concept Veiculo_Publicacao
 
-	// Conceitos mantidos para compatibilidade com descrições antigas
-	concept Autor
-	concept Citacao
+	concept PPG
+
+	concept Area_Conhecimento
+
+	concept Producao_Cientifica
+
+	concept Veiculo_Publicacao
 
 	// =========================================================
 	// Relações entre conceitos
@@ -33,19 +33,9 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		to PPG
 	]
 
-	relation area_da_producao [
-		from Producao_Cientifica
-		to Area_Conhecimento
-	]
-
 	relation publicada_em [
 		from Producao_Cientifica
 		to Veiculo_Publicacao
-	]
-
-	relation autoria [
-		from Autor
-		to Producao_Cientifica
 	]
 
 	// =========================================================
@@ -117,7 +107,7 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	// =========================================================
 	// Propriedades de Veículo de Publicação
-	// CiteScore e Quartil pertencem ao veículo, não à produção.
+	// Métricas bibliométricas pertencem ao veículo, não à produção.
 	// =========================================================
 	scalar property cd_identificador_veiculo [
 		domain Veiculo_Publicacao
@@ -131,7 +121,7 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 
 	scalar property nr_citescore [
 		domain Veiculo_Publicacao
-		range xsd:string
+		range xsd:decimal
 	]
 
 	scalar property ds_quartil [
@@ -139,36 +129,8 @@ vocabulary <http://gic.ufrpe.br/cti/vocabulary/cti#> as cti {
 		range xsd:string
 	]
 
-	// =========================================================
-	// Propriedades de Autor e Citação, mantidas para evolução futura
-	// =========================================================
-	scalar property nm_pessoa [
-		domain Autor
-		range xsd:string
-	]
-
-	scalar property ds_orc_id [
-		domain Autor
-		range xsd:string
-	]
-
-	scalar property an_base_citacao [
-		domain Citacao
-		range xsd:integer
-	]
-
-	scalar property nr_citacoes_autor [
-		domain Citacao
-		range xsd:integer
-	]
-
-	scalar property nr_indice_h [
-		domain Citacao
-		range xsd:integer
-	]
-
-	scalar property nr_indice_i10 [
-		domain Citacao
-		range xsd:integer
+	scalar property nr_snip [
+		domain Veiculo_Publicacao
+		range xsd:decimal
 	]
 }

@@ -70,6 +70,7 @@
     - nm_veiculo_publicacao
     - nr_citescore_scopus
     - nr_quartil_scopus
+    - nr_snip
 
   - Citação
     - an_base_citacao
@@ -102,7 +103,6 @@ projetocti/
 │       ├── 01_evolucao_producao_por_ano.sparql
 │       ├── 02_producoes_por_ict_e_area.sparql
 │       ├── 03_qualidade_media_por_area.sparql
-│       ├── 04_publicacoes_por_quartil.sparql
-│       ├── 05_publica_vs_privada.sparql
-│       ├── 06_impacto_pandemia_quantidade_qualidade.sparql
-│       └── 07_top_veiculos_por_citescore.sparql
+│       ├── 04_publica_vs_privada.sparql
+│       ├── 05_impacto_pandemia_quantidade_qualidade.sparql
+│       

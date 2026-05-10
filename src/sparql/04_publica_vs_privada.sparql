@@ -1,0 +1,31 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+# Consulta: Comparação entre ICTs públicas e privadas em Computação
+# Objetivo: responder a média de CiteScore das ICTs públicas e privadas de PE na área de Computação.
+
+SELECT ?dependencia
+       (COUNT(?producao) AS ?total_producoes)
+       (COUNT(?citescore) AS ?producoes_com_citescore)
+       (COUNT(DISTINCT ?veiculo_com_citescore) AS ?veiculos_com_citescore)
+       (IF(COUNT(?citescore) > 0, SUM(COALESCE(?citescore, 0)) / COUNT(?citescore), 0) AS ?media_citescore)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:vinculada ?ppg ;
+            cti:publicada_em ?veiculo .
+
+  ?ppg cti:sediado_em ?ict ;
+       cti:pertence ?areaConhecimento .
+
+  ?areaConhecimento cti:nm_area_conhecimento ?area .
+
+  ?ict cti:ds_dependencia_administrativa ?dependencia .
+
+  FILTER(?area = "CIÊNCIA DA COMPUTAÇÃO")
+  FILTER(?dependencia = "Pública" || ?dependencia = "Privada")
+
+  OPTIONAL {
+    ?veiculo cti:nr_citescore ?citescore .
+    BIND(?veiculo AS ?veiculo_com_citescore)
+  }
+}
+GROUP BY ?dependencia
+ORDER BY DESC(?media_citescore)
