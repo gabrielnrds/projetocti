@@ -1,0 +1,20 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+
+# Consulta: Quantidade de produções por ICT e área de conhecimento
+# Objetivo: identificar quais instituições e áreas concentram maior volume de produção.
+
+SELECT ?sigla_ict ?area (COUNT(?producao) AS ?total_producoes)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:vinculada ?ppg .
+
+  ?ppg a cti:PPG ;
+       cti:sediado_em ?ict ;
+       cti:pertence ?areaConhecimento .
+
+  ?ict cti:sg_entidade_ensino ?sigla_ict .
+
+  ?areaConhecimento cti:nm_area_conhecimento ?area .
+}
+GROUP BY ?sigla_ict ?area
+ORDER BY DESC(?total_producoes)

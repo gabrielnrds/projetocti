@@ -1,0 +1,31 @@
+PREFIX cti: <http://gic.ufrpe.br/cti/vocabulary/cti#>
+# Consulta: Qualidade média por área de conhecimento
+# Objetivo: responder qual área tem publicações em veículos de melhor qualidade.
+# Métricas: CiteScore para aderir aos desafios e SNIP como indicador complementar.
+
+SELECT ?area
+       (COUNT(?producao) AS ?total_producoes)
+       (COUNT(DISTINCT ?veiculo) AS ?total_veiculos)
+       (COUNT(?citescore) AS ?producoes_com_citescore)
+       (IF(COUNT(?citescore) > 0, SUM(COALESCE(?citescore, 0)) / COUNT(?citescore), 0) AS ?media_citescore)
+       (IF(COUNT(?snip) > 0, SUM(COALESCE(?snip, 0)) / COUNT(?snip), 0) AS ?media_snip)
+WHERE {
+  ?producao a cti:Producao_Cientifica ;
+            cti:vinculada ?ppg ;
+            cti:publicada_em ?veiculo .
+
+  ?ppg cti:pertence ?areaConhecimento .
+  ?areaConhecimento cti:nm_area_conhecimento ?area .
+
+  ?veiculo a cti:Veiculo_Publicacao .
+
+  OPTIONAL {
+    ?veiculo cti:nr_citescore ?citescore .
+  }
+
+  OPTIONAL {
+    ?veiculo cti:nr_snip ?snip .
+  }
+}
+GROUP BY ?area
+ORDER BY DESC(?media_citescore)
